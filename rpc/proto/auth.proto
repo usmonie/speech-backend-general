@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package authentication;
+
+import "user.proto";
+
+service AuthenticationApi {
+  rpc CreateNewSession(PublicKeyRequest) returns (PublicKeyResponse) {}
+
+  rpc RegisterUser(StartRegisterRequest) returns (StartRegisterResponse) {}
+
+  rpc LoginUsername(StartLoginRequest) returns (StartLoginResponse) {}
+  rpc LoginConfirmCodes(StartLoginConfirmCodesRequest) returns (StartLoginConfirmCodesResponse) {}
+
+}
+
+message PublicKeyResponse {
+  bytes session_id = 1;
+  bytes nonce = 2;
+  bytes x = 3;
+  bytes y = 4;
+}
+
+message PublicKeyRequest {
+  bytes x = 1;
+  bytes y = 2;
+
+  string device = 3;
+}
+
+message StartRegisterRequest {
+  bytes session_id = 1;
+  bytes nonce = 2;
+  bytes username = 3;
+  bytes email = 4;
+  bytes password = 5;
+}
+
+message StartRegisterResponse {
+  bytes session_id = 1;
+  bytes nonce = 2;
+  bytes username = 4;
+  bytes email = 5;
+  bytes password = 6;
+}
+
+message StartLoginRequest {
+  bytes session_id = 1;
+  bytes nonce = 2;
+  bytes cnonce = 3;
+  bytes username = 4;
+  bytes password = 5;
+}
+
+message StartLoginResponse {
+  bytes session_id = 1;
+}
+
+message StartLoginConfirmCodesRequest {
+  bytes session_id = 1;
+  bytes email_code = 2;
+  optional bytes third_factory_code = 3;
+}
+
+message StartLoginConfirmCodesResponse {
+  bytes auth_key = 1;
+}

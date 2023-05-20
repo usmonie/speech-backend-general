@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package user;
+
+import "media.proto";
+
+message UserResponse {
+  string id = 1;
+  string name = 2;
+
+  optional media.GraphicResponse avatar = 3;
+  optional string status = 4;
+  optional string username = 5;
+  optional string phone = 6;
+  optional string email = 7;
+}

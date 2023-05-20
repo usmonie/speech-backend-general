@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package accounts;
+
+import "user.proto";
+
+service AccountsApi {
+
+  rpc Find(FindByAccountNameRequest) returns (FindByAccountNameResponse);
+
+  rpc CheckUsernameExist(FindByAccountNameResponse) returns (IsUsernameExistResponse);
+
+}
+
+message FindByAccountNameRequest {
+  string accountName = 1;
+}
+
+message FindByAccountNameResponse {
+  repeated user.UserResponse users = 1;
+}
+
+message IsUsernameExistResponse {
+  bool isExist = 1;
+}

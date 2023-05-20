@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package timeline;
+
+import "media.proto";
+import "user.proto";
+
+service TimelineApi {
+  rpc GetTimeline(TimelinePageRequest) returns (TimelineResponse) {}
+
+  rpc GetPlotById(GetPlotRequest) returns (PlotResponse) {}
+}
+
+message TimelinePageRequest {
+  optional string last_item_id = 1;
+  int32 count = 2;
+}
+
+message TimelineResponse {
+  repeated PlotResponse plots = 1;
+}
+
+message GetPlotRequest {
+  string id = 1;
+}
+
+message PlotResponse {
+  string id = 1;
+  optional string title = 2;
+  optional string description = 3;
+
+  user.UserResponse owner = 4;
+
+  media.GraphicResponse image = 5;
+  repeated StoryResponse stories = 6;
+}
+
+message StoryResponse {
+  string id = 1;
+  optional string text = 3;
+  uint64 created_at = 4;
+  user.UserResponse author = 5;
+
+  media.GraphicResponse scene = 6;
+  optional media.AudioResponse soundtrack = 7;
+}

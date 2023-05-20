@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package chat;
+
+//service ChatApi {
+//
+//}
+//
+//
+//message Message {
+//  string id = 1;
+//  uint64 sentAt = 2;
+//
+//  string from_Id = 3;
+//  string message = 4;
+//  string reply_message_id = 5;
+//  string forward_id = 6;
+//
+//  repeated string seen_by_ids = 7;
+//  repeated string media_ids = 8;
+//}
